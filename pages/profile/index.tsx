@@ -2,7 +2,7 @@ import { getSession } from "@auth0/nextjs-auth0";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { Card, Nav, Button, Container } from "react-bootstrap";
+import { Card, Nav, Button, Container, ListGroup } from "react-bootstrap";
 import { Layout } from "../../components/layout";
 import { getDatabase } from "../../src/database";
 import { v4 as uuidv4 } from "uuid";
@@ -56,9 +56,17 @@ const Profile: React.FC<{
           <>
             <h4 className="container">Your tasks :</h4>
             <Container>
-              {tasks.map((element) => {
-                return <li key={uuidv4()}>{element}</li>;
-              })}
+              <ListGroup>
+                {tasks.map((element) => {
+                  return (
+                    <ListGroup.Item key={uuidv4()}>
+                      {"Task: "}
+                      {element?.title} {"| description: "}
+                      {element?.content}
+                    </ListGroup.Item>
+                  );
+                })}
+              </ListGroup>
             </Container>
           </>
         ) : (
