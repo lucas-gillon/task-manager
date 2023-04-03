@@ -22,7 +22,7 @@ export default async function handler(
     await mongodb.db().collection("users").insertOne({
       nickname: pseudo,
       email: email,
-      tasks: {},
+      tasks: [],
     });
     // console.log("l'user n'existe pas");
   }
